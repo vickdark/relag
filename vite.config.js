@@ -13,4 +13,14 @@ export default defineConfig({
             ignored: ['**/storage/framework/views/**'],
         },
     },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                api: 'modern-compiler',
+                quietDeps: true,
+                silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'if-function'],
+            },
+        },
+    },
 });
+

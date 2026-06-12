@@ -11,14 +11,54 @@ AOS.init({
     once: true,
 });
 
+// Ensure initialization happens after all scripts are loaded
+window.addEventListener('load', () => {
+    initLetterAnimation();
+});
+
+// Letter Animation for Hero
+function initLetterAnimation() {
+    const heroTitle = document.querySelector('.hero-title');
+    if (!heroTitle) return;
+
+    const text = heroTitle.textContent.trim();
+    heroTitle.innerHTML = '';
+    
+    // Split into words first to maintain spaces
+    const words = text.split(' ');
+    
+    words.forEach((word, wordIdx) => {
+        const wordSpan = document.createElement('span');
+        wordSpan.className = 'word';
+        wordSpan.style.display = 'inline-block';
+        wordSpan.style.whiteSpace = 'nowrap';
+
+        [...word].forEach((char, charIdx) => {
+            const charSpan = document.createElement('span');
+            charSpan.textContent = char;
+            charSpan.className = 'char';
+            charSpan.style.display = 'inline-block';
+            charSpan.style.animationDelay = `${(wordIdx * 5 + charIdx) * 0.05}s`;
+            wordSpan.appendChild(charSpan);
+        });
+
+        heroTitle.appendChild(wordSpan);
+        if (wordIdx < words.length - 1) {
+            heroTitle.appendChild(document.createTextNode(' '));
+        }
+    });
+}
+
 // Initialize Typed.js (only if element exists)
 const typedElement = document.querySelector('.typed-text');
 if (typedElement) {
     new Typed('.typed-text', {
-        strings: ['UN MUNDO DE CONOCIMIENTOS', 'TU FUTURO EMPIEZA AQUÍ', 'EDUCACIÓN DE CALIDAD'],
+        strings: ['UN MUNDO DE CONOCIMIENTOS', 'FORMACIÓN TÉCNICA SUPERIOR', 'TU FUTURO EMPIEZA AQUÍ'],
         typeSpeed: 60,
         backSpeed: 40,
-        loop: true
+        loop: true,
+        cursorChar: '|',
+        autoInsertCss: true
     });
 }
 
@@ -27,7 +67,7 @@ const swiper = new Swiper('.mySwiper', {
     modules: [Navigation, Pagination, Autoplay],
     slidesPerView: 1,
     spaceBetween: 30,
-    loop: true,
+    loop: false, // Disabled to avoid warnings when slides <= slidesPerView
     autoplay: {
         delay: 3000,
         disableOnInteraction: false,
