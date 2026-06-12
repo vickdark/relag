@@ -1,0 +1,273 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@300;400;700&display=swap');
+
+// Variables de marca personalizadas
+$primary: #6366f1; // Indigo moderno
+$secondary: #f43f5e; // Rose vibrante
+$dark: #0f172a; // Azul pizarra muy oscuro
+$light: #f8fafc;
+$success: #10b981;
+$info: #0ea5e9;
+
+$font-family-sans-serif: 'Plus Jakarta Sans', sans-serif;
+$headings-font-family: 'Outfit', sans-serif;
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// FontAwesome
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+// AOS
+@import 'aos/dist/aos.css';
+
+// Swiper
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+// Custom Styles
+.section-padding {
+    padding: 100px 0;
+}
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --mesh-gradient: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0, transparent 50%), 
+                     radial-gradient(at 50% 0%, rgba(244, 63, 94, 0.1) 0, transparent 50%), 
+                     radial-gradient(at 100% 0%, rgba(14, 165, 233, 0.15) 0, transparent 50%);
+}
+
+body {
+    background-color: $light;
+    background-image: var(--mesh-gradient);
+    background-attachment: fixed;
+    color: $dark;
+    overflow-x: hidden;
+}
+
+// Glassmorphism Navbar
+.navbar-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+// Modern Hero
+.hero-section {
+    background: none;
+    min-height: 90vh;
+    position: relative;
+    padding: 120px 0;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: radial-gradient(circle at 50% 50%, rgba($primary, 0.05) 0%, transparent 70%);
+        z-index: -1;
+    }
+}
+
+.hero-logo {
+    max-width: 180px;
+    transition: transform 0.5s ease;
+    &:hover {
+        transform: rotate(5deg) scale(1.1);
+    }
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, $primary, $secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+// Custom Cards (Glass)
+.card-modern {
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden; // Asegura que la imagen no se salga de los bordes redondeados
+    
+    &:hover {
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        border-color: rgba($primary, 0.3);
+
+        .card-img-top-modern {
+            transform: scale(1.1);
+        }
+    }
+
+    &.p-0 {
+        padding: 0 !important;
+    }
+}
+
+.card-img-container {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-img-top-modern {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card-body-modern {
+    padding: 1.5rem 2rem 2rem;
+}
+
+// Modern Buttons
+.btn-modern {
+    padding: 12px 32px;
+    border-radius: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    
+    &.btn-primary {
+        background: linear-gradient(135deg, $primary, darken($primary, 10%));
+        box-shadow: 0 8px 20px rgba($primary, 0.3);
+        
+        &:hover {
+            box-shadow: 0 12px 28px rgba($primary, 0.4);
+            transform: translateY(-2px);
+        }
+    }
+
+    &.btn-outline-primary {
+        border: 2px solid $primary;
+        color: $primary;
+        background: transparent;
+        
+        &:hover {
+            background: $primary;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba($primary, 0.2);
+        }
+    }
+}
+
+// Icon Boxes
+.icon-shape {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, rgba($primary, 0.1), rgba($primary, 0.05));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: $primary;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.card-modern:hover .icon-shape {
+    background: $primary;
+    color: white;
+    transform: rotate(-10deg);
+}
+
+// Modern Inputs
+.form-control-modern {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+    
+    &:focus {
+        background: white;
+        border-color: $primary;
+        box-shadow: 0 0 0 4px rgba($primary, 0.1);
+    }
+}
+
+.form-label-modern {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: $dark;
+    margin-bottom: 8px;
+}
+
+// Quote Section
+.quote-section {
+    font-style: italic;
+    background-color: #0f172a; // Mismo que $dark para fluidez
+    color: white;
+    padding: 100px 0;
+    
+    .display-6 {
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    .blockquote-footer {
+        color: rgba(255, 255, 255, 0.6) !important;
+        font-size: 1.1rem;
+        margin-top: 1.5rem;
+        &::before {
+            content: "— ";
+        }
+    }
+}
+
+// Footer
+.footer-modern {
+    background-color: #0f172a; // Azul pizarra muy oscuro ($dark)
+    color: rgba(255, 255, 255, 0.7);
+    padding: 80px 0 40px;
+    position: relative;
+    
+    // Eliminar el borde redondeado que causaba el corte visual blanco en los lados
+    border-radius: 0; 
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    h6, .fw-bold.text-white {
+        color: white !important;
+        letter-spacing: 0.5px;
+        margin-bottom: 1.5rem;
+    }
+
+    .opacity-50 {
+        opacity: 0.7 !important; // Aumentar visibilidad de los textos secundarios
+    }
+
+    a.text-white {
+        color: rgba(255, 255, 255, 0.7) !important;
+        transition: all 0.3s ease;
+        &:hover {
+            color: $primary !important;
+            padding-left: 5px;
+        }
+    }
+
+    .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        margin-top: 50px;
+        padding-top: 30px;
+        color: rgba(255, 255, 255, 0.4);
+    }
+}
+
+.max-width-700 {
+    max-width: 700px;
+}
+
+.swiper-pagination-bullet-active {
+    background: $primary;
+}
